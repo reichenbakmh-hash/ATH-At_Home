@@ -1,0 +1,16 @@
+name = "ath-worker"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ath-db"
+database_id = "1d6d8bc4-d4a9-4173-bfda-263ee1eb2d5e"
+
+[[kv_namespaces]]
+binding = "KV_BINDING"
+id = "bbbedc05c4fe474f9c9ec2dafc0ce24d"
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "ath-files"
