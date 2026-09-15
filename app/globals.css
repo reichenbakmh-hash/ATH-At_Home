@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #F3F1EC;
+  color: #1B1A17;
+}
+
+html.dark body {
+  background-color: #17181A;
+  color: #EDEAE2;
+}
+
+::selection {
+  background-color: #A9552F;
+  color: #F3F1EC;
+}
+
+* {
+  border-color: theme("colors.stone");
+}
+
+html.dark * {
+  border-color: #2A2C2E;
+}
+
+:focus-visible {
+  outline: 2px solid #A9552F;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
