@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
+import Sidebar from "@/components/Sidebar";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -35,7 +36,15 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <div className="flex h-screen">
+          <Sidebar />
+          <main className="flex-1 overflow-y-auto px-6 py-8 md:px-10">
+            {children}
+          </main>
+        </div>
+      </body>
     </html>
   );
 }
+
