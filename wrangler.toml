@@ -4,8 +4,8 @@ compatibility_date = "2026-09-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "ath-at-home"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_name = "ath_db"
+database_id = "1d6d8bc4-d4a9-4173-bfda-263ee1eb2d5e"
 
 [[r2_buckets]]
 binding = "DOCS"
