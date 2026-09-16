@@ -3,6 +3,6 @@
   "buildCommand": "next build",
   "installCommand": "npm install",
   "env": {
-    "NEXT_PUBLIC_API_URL": "@ath-api-url"
+    "NEXT_PUBLIC_API_URL": "https://ath-at-home.app-installation.workers.dev"
   }
 }
