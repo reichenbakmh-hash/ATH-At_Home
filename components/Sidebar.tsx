@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   CheckSquare,
   CalendarDays,
@@ -17,30 +19,22 @@ import {
   House
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import type { ModuleId } from "@/lib/types";
 
-const navItems: { id: ModuleId; label: string; icon: React.ElementType }[] = [
-  { id: "tasks", label: "Tâches", icon: CheckSquare },
-  { id: "calendar", label: "Calendrier", icon: CalendarDays },
-  { id: "shopping", label: "Courses", icon: ShoppingCart },
-  { id: "meals", label: "Repas & Recettes", icon: UtensilsCrossed },
-  { id: "budget", label: "Budget", icon: Wallet },
-  { id: "shared-expenses", label: "Dépenses partagées", icon: Split },
-  { id: "pantry", label: "Garde-manger", icon: Package },
-  { id: "documents", label: "Documents", icon: FileText },
-  { id: "inventory", label: "Inventaire", icon: Boxes },
-  { id: "notes-contacts", label: "Notes & Contacts", icon: StickyNote }
+const navItems = [
+  { href: "/tasks", label: "Tâches", icon: CheckSquare },
+  { href: "/calendar", label: "Calendrier", icon: CalendarDays },
+  { href: "/shopping", label: "Courses", icon: ShoppingCart },
+  { href: "/meals", label: "Repas & Recettes", icon: UtensilsCrossed },
+  { href: "/budget", label: "Budget", icon: Wallet },
+  { href: "/shared-expenses", label: "Dépenses partagées", icon: Split },
+  { href: "/pantry", label: "Garde-manger", icon: Package },
+  { href: "/documents", label: "Documents", icon: FileText },
+  { href: "/inventory", label: "Inventaire", icon: Boxes },
+  { href: "/notes-contacts", label: "Notes & Contacts", icon: StickyNote }
 ];
 
-interface SidebarProps {
-  activeModule: ModuleId | null;
-  onSelectModule: (moduleId: ModuleId) => void;
-}
-
-export default function Sidebar({
-  activeModule,
-  onSelectModule
-}: SidebarProps): React.JSX.Element {
+export default function Sidebar(): React.JSX.Element {
+  const pathname = usePathname();
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -56,21 +50,21 @@ export default function Sidebar({
 
   return (
     <aside className="flex h-full w-64 shrink-0 flex-col border-r border-stone bg-paper dark:bg-night">
-      <div className="flex items-center gap-2 px-5 py-6">
+      <Link href="/" className="flex items-center gap-2 px-5 py-6">
         <House size={22} strokeWidth={1.75} className="text-clay" />
         <span className="text-base font-semibold tracking-tight">
           At Home
         </span>
-      </div>
+      </Link>
 
       <nav className="flex-1 space-y-0.5 px-2">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeModule === item.id;
+          const isActive = pathname === item.href;
           return (
-            <button
-              key={item.id}
-              onClick={() => onSelectModule(item.id)}
+            <Link
+              key={item.href}
+              href={item.href}
               className={`flex w-full items-center gap-3 px-3 py-2 text-left text-sm transition-colors ${
                 isActive
                   ? "bg-paper-dim font-medium text-ink dark:bg-night-panel dark:text-night-ink"
@@ -79,7 +73,7 @@ export default function Sidebar({
             >
               <Icon size={17} strokeWidth={1.75} />
               {item.label}
-            </button>
+            </Link>
           );
         })}
       </nav>
@@ -96,13 +90,13 @@ export default function Sidebar({
           )}
           {isDark ? "Mode jour" : "Mode nuit"}
         </button>
-        <button
-          onClick={() => onSelectModule("notes-contacts")}
+        <Link
+          href="/settings"
           className="flex w-full items-center gap-3 px-3 py-2 text-left text-sm text-ink-soft hover:bg-paper-dim dark:text-night-ink/70 dark:hover:bg-night-panel"
         >
           <Settings size={17} strokeWidth={1.75} />
           Paramètres
-        </button>
+        </Link>
       </div>
     </aside>
   );
