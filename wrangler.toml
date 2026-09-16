@@ -1,4 +1,4 @@
-name = "ath-at-home-api"
+name = "ath-at-home"
 main = "workers/index.ts"
 compatibility_date = "2026-09-01"
 
